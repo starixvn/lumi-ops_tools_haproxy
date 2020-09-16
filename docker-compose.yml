@@ -5,6 +5,6 @@ services:
     image: haproxy:2.2-alpine
     restart: unless-stopped
     volumes:
-      - ./data:/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - ./data:/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     ports:
       - '6969:6969'
