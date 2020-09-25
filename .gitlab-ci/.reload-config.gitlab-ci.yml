@@ -2,6 +2,6 @@
   stage: reload_config
   script:
     - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
-      "docker kill --signal USR2 $(docker container ls --filter name=haproxy-service --quiet)"
+      "docker kill --signal USR2 \$(docker container ls --filter name=haproxy-service --quiet)"
   tags:
     - docker
