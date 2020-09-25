@@ -13,5 +13,6 @@ include:
     file: "common/before-script.gitlab-ci.yml"
   - .gitlab-ci/.create-haproxy-service.gitlab-ci.yml
   - .gitlab-ci/.sync-config.gitlab-ci.yml
+  - .gitlab-ci/.reload-config.gitlab-ci.yml
   - .gitlab-ci/rules.gitlab-ci.yml
   - .gitlab-ci/local/index.gitlab-ci.yml
