@@ -17,13 +17,13 @@
   if: '$CI_COMMIT_TAG =~ /^update-prod-\d{8}-\d+.*$/'
 
 .if-any-local: &if-any-local
-  if: '$CI_COMMIT_TAG =~ /^-local-\d{8}-\d+.*$/'
+  if: '$CI_COMMIT_TAG =~ /^.*-local-\d{8}-\d+.*$/'
 
 .if-any-sit: &if-any-sit
-  if: '$CI_COMMIT_TAG =~ /^-sit-\d{8}-\d+.*$/'
+  if: '$CI_COMMIT_TAG =~ /^.*-sit-\d{8}-\d+.*$/'
 
 .if-any-prod: &if-any-prod
-  if: '$CI_COMMIT_TAG =~ /^-prod-\d{8}-\d+.*$/'
+  if: '$CI_COMMIT_TAG =~ /^.*-prod-\d{8}-\d+.*$/'
 
 .create:sit:rules:
   rules:
