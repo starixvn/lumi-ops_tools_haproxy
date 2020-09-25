@@ -5,8 +5,8 @@ variables:
 
 stages:
   - sync
-  - create
   - reload
+  - create
 
 include:
   - project: "lumi-ops/ci-scripts"
