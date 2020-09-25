@@ -16,6 +16,15 @@
 .if-update-prod: &if-update-prod
   if: '$CI_COMMIT_TAG =~ /^update-prod-\d{8}-\d+.*$/'
 
+.if-reload-local: &if-reload-local
+  if: '$CI_COMMIT_TAG =~ /^reload-local-\d{8}-\d+.*$/'
+
+.if-reload-situat: &if-reload-situat
+  if: '$CI_COMMIT_TAG =~ /^reload-sit-\d{8}-\d+.*$/'
+
+.if-reload-prod: &if-reload-prod
+  if: '$CI_COMMIT_TAG =~ /^reload-prod-\d{8}-\d+.*$/'
+
 .if-any-local: &if-any-local
   if: '$CI_COMMIT_TAG =~ /^.*-local-\d{8}-\d+.*$/'
 
@@ -58,6 +67,24 @@
 .update:prod:rules:
   rules:
     - <<: *if-update-prod
+      when: manual
+    - when: never
+
+.reload:sit:rules:
+  rules:
+    - <<: *if-reload-situat
+      when: on_success
+    - when: never
+
+.reload:local:rules:
+  rules:
+    - <<: *if-reload-local
+      when: on_success
+    - when: never
+
+.reload:prod:rules:
+  rules:
+    - <<: *if-reload-prod
       when: manual
     - when: never
 
