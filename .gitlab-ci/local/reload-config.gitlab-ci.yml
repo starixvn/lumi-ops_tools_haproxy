@@ -1,6 +1,7 @@
 reload-config-local:
   extends:
     - .reload-config
+    - .reload:local:rules
   variables:
     SERVER_IP: 10.10.50.18
     SERVER_USER: root
