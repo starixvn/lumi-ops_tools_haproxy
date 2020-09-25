@@ -5,7 +5,7 @@ variables:
 
 stages:
   - sync
-  - reload
+  - reload_config
   - create
 
 include:
