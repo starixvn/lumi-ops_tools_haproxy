@@ -1,0 +1,80 @@
+.if-create-local: &if-create-local
+  if: '$CI_COMMIT_TAG =~ /^create-local-\d{8}-\d+.*$/'
+
+.if-create-situat: &if-create-situat
+  if: '$CI_COMMIT_TAG =~ /^create-sit-\d{8}-\d+.*$/'
+
+.if-create-prod: &if-create-prod
+  if: '$CI_COMMIT_TAG =~ /^create-prod-\d{8}-\d+.*$/'
+
+.if-update-local: &if-update-local
+  if: '$CI_COMMIT_TAG =~ /^update-local-\d{8}-\d+.*$/'
+
+.if-update-situat: &if-update-situat
+  if: '$CI_COMMIT_TAG =~ /^update-sit-\d{8}-\d+.*$/'
+
+.if-update-prod: &if-update-prod
+  if: '$CI_COMMIT_TAG =~ /^update-prod-\d{8}-\d+.*$/'
+
+.if-any-local: &if-any-local
+  if: '$CI_COMMIT_TAG =~ /^-local-\d{8}-\d+.*$/'
+
+.if-any-sit: &if-any-sit
+  if: '$CI_COMMIT_TAG =~ /^-sit-\d{8}-\d+.*$/'
+
+.if-any-prod: &if-any-prod
+  if: '$CI_COMMIT_TAG =~ /^-prod-\d{8}-\d+.*$/'
+
+.create:sit:rules:
+  rules:
+    - <<: *if-create-situat
+      when: on_success
+    - when: never
+
+.create:local:rules:
+  rules:
+    - <<: *if-create-local
+      when: on_success
+    - when: never
+
+.create:prod:rules:
+  rules:
+    - <<: *if-create-prod
+      when: manual
+    - when: never
+
+.update:sit:rules:
+  rules:
+    - <<: *if-update-situat
+      when: on_success
+    - when: never
+
+.update:local:rules:
+  rules:
+    - <<: *if-update-local
+      when: on_success
+    - when: never
+
+.update:prod:rules:
+  rules:
+    - <<: *if-update-prod
+      when: manual
+    - when: never
+
+.any:local:rules:
+  rules:
+    - <<: *if-any-local
+      when: on_success
+    - when:
+
+.any:sit:rules:
+  rules:
+    - <<: *if-any-sit
+      when: on_success
+    - when: never
+
+.any:prod:rules:
+  rules:
+    - <<: *if-any-prod
+      when: on_success
+    - when: never

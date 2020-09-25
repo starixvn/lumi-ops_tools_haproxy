@@ -1,0 +1,17 @@
+variables:
+  - WORKING_PATH: /var/www/haproxy
+  - CONFIGS_SRC_DIR_PATH: ./
+  - CONFIG_FILE: haproxy.cfg
+
+stages:
+  - sync
+  - create
+
+include:
+  - project: "lumi-ops/ci-scripts"
+    ref: master
+    file: "common/before-script.gitlab-ci.yml"
+  - .gitlab-ci/.create-haproxy-service.gitlab-ci.yml
+  - .gitlab-ci/.sync-config.gitlab-ci.yml
+  - .gitlab-ci/rules.gitlab-ci.yml
+  - .gitlab-ci/local/index.gitlab-ci.yml

@@ -1,0 +1,18 @@
+.create-haproxy-service:
+  stage: create
+  script:
+    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+      docker network create -d overlay $DOCKER_NETWORK_NAME || true
+    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+      docker service create
+      --mode replicated
+      --replicas 2
+      --name haproxy-service
+      --network $DOCKER_NETWORK_NAME
+      --publish published=9999,target=9999,protocol=tcp,mode=ingress
+      --publish published=6969,target=6969,protocol=tcp,mode=ingress \
+      --mount type=bind,source=/var/www/haproxy/,target=/usr/local/etc/haproxy/,ro=true \
+      --dns=127.0.0.11
+      haproxytech/haproxy-debian:2.2
+  tags:
+    - docker
