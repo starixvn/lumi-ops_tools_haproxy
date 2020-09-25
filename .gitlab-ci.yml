@@ -1,7 +1,7 @@
 variables:
-  - WORKING_PATH: /var/www/haproxy
-  - CONFIGS_SRC_DIR_PATH: ./
-  - CONFIG_FILE: haproxy.cfg
+  WORKING_PATH: /var/www/haproxy
+  CONFIGS_SRC_DIR_PATH: ./
+  CONFIG_FILE: haproxy.cfg
 
 stages:
   - sync

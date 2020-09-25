@@ -3,6 +3,6 @@ create-haproxy-service-local:
     - .create-haproxy-service
     - .create:local:rules
   variables:
-    - SERVER_IP: 10.10.50.18
-    - SERVER_USER: root
-    - DOCKER_NETWORK_NAME: lumi-network
+    SERVER_IP: 10.10.50.18
+    SERVER_USER: root
+    DOCKER_NETWORK_NAME: lumi-network
