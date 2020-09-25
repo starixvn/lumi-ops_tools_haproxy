@@ -9,12 +9,3 @@ services:
     ports:
       - '6969:6969'
       - '8080:8080'
-
-  haproxy2:
-    image: lumi-haproxy
-    container_name: haproxy_2
-    hostname: haproxy
-    restart: unless-stopped
-    ports:
-      - '6970:6969'
-      - '8081:8080'
