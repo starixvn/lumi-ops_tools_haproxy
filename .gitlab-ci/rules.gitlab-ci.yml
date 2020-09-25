@@ -65,7 +65,7 @@
   rules:
     - <<: *if-any-local
       when: on_success
-    - when:
+    - when: never
 
 .any:sit:rules:
   rules:
