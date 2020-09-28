@@ -1,0 +1,18 @@
+sync-haproxy-config-local:
+  extends:
+    - .sync-config
+    - .any:local:rules
+  variables:
+    SERVER_IP: 10.10.50.18
+    SERVER_USER: root
+    SWARM_NODES: 10.10.50.14 10.10.50.18 10.10.50.19
+
+sync-haproxy-config-kbt:
+  extends:
+    - .sync-config-kbt
+    - .any:sit:rules
+  variables:
+    SERVER_IP: 10.2.189.65
+    SERVER_USER: l1uat
+    SERVER_PORT: 8837
+    SWARM_NODES: 10.10.50.14 10.10.50.18 10.10.50.19

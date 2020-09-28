@@ -1,0 +1,4 @@
+include:
+  - .gitlab-ci/sit/create-haproxy-service.gitlab-ci.yml
+  - .gitlab-ci/sit/sync-config.gitlab-ci.yml
+  - .gitlab-ci/sit/reload-config.gitlab-ci.yml

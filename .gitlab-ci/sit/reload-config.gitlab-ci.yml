@@ -1,0 +1,23 @@
+reload-config-local-1:
+  extends:
+    - .reload-config
+    - .reload:local:rules
+  variables:
+    SERVER_IP: 10.10.50.14
+    SERVER_USER: root
+
+reload-config-local-2:
+  extends:
+    - .reload-config
+    - .reload:local:rules
+  variables:
+    SERVER_IP: 10.10.50.18
+    SERVER_USER: root
+
+reload-config-local-3:
+  extends:
+    - .reload-config
+    - .reload:local:rules
+  variables:
+    SERVER_IP: 10.10.50.19
+    SERVER_USER: root

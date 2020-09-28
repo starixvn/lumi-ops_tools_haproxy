@@ -1,0 +1,9 @@
+create-haproxy-service-sit:
+  extends:
+    - .create-haproxy-service-kbt
+    - .create:sit:rules
+  variables:
+    SERVER_IP: 10.2.189.65
+    SERVER_USER: l1uat
+    SERVER_PORT: 8837
+    DOCKER_NETWORK_NAME: lumi-network
