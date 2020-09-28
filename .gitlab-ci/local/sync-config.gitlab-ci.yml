@@ -1,23 +1,8 @@
-sync-haproxy-config-local-1:
+sync-haproxy-config-local:
   extends:
     - .sync-config
     - .any:local:rules
   variables:
     SERVER_IP: 10.10.50.18
     SERVER_USER: root
-
-sync-haproxy-config-local-2:
-  extends:
-    - .sync-config
-    - .any:local:rules
-  variables:
-    SERVER_IP: 10.10.50.19
-    SERVER_USER: root
-
-sync-haproxy-config-local-3:
-  extends:
-    - .sync-config
-    - .any:local:rules
-  variables:
-    SERVER_IP: 10.10.50.14
-    SERVER_USER: root
+    SWARM_NODES: 10.10.50.14 10.10.50.18 10.10.50.19
