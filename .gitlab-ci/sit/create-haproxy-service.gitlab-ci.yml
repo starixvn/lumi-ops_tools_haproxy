@@ -1,6 +1,6 @@
 create-haproxy-service-sit:
   extends:
-    - .create-haproxy-service-kbt
+    - .create-haproxy-service
     - .create:sit:rules
   variables:
     SERVER_IP: 10.2.189.65
