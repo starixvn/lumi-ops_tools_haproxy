@@ -3,39 +3,37 @@
   script:
     - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
       docker network create -d overlay $DOCKER_NETWORK_NAME || true
-    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+    - export COMMAND="ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
       docker service create
       --mode replicated
       --replicas 2
       --name haproxy-service
       --network $DOCKER_NETWORK_NAME
-      --publish published=9999,target=9999,protocol=tcp,mode=ingress
-      --publish published=6969,target=6969,protocol=tcp,mode=ingress
       --mount type=bind,source=/var/www/haproxy/,target=/usr/local/etc/haproxy/,ro=true
-      --dns=127.0.0.11
-      haproxytech/haproxy-debian:2.2
+      --dns=127.0.0.11"
+    - >
+      for PORT in $PUBLISHED_PORTS;
+      do 
+        export COMMAND+=" --publish published=PORT,target=PORT,protocol=tcp,mode=ingress"
+      done
+    - export COMMAND+=" haproxytech/haproxy-debian:2.2"
   tags:
     - docker
-
-.create-haproxy-service-kbt:
-  stage: create
-  script:
-    - ssh -p $KBT_PROXY_SSH_PORT -t $KBT_PROXY_USER@$KBT_PROXY_ADDRESS
-      ssh -p $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
-      docker network create -d overlay $DOCKER_NETWORK_NAME || true
-    - ssh -p $KBT_PROXY_SSH_PORT -t $KBT_PROXY_USER@$KBT_PROXY_ADDRESS
-      ssh -p $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
-      docker service create
-      --mode replicated
-      --replicas 2
-      --name haproxy-service
-      --network $DOCKER_NETWORK_NAME
-      --publish published=9999,target=9999,protocol=tcp,mode=ingress
-      --publish published=6200,target=6200,protocol=tcp,mode=ingress
-      --publish published=6300,target=6300,protocol=tcp,mode=ingress
-      --publish published=6303,target=6303,protocol=tcp,mode=ingress
-      --publish published=6301,target=6304,protocol=tcp,mode=ingress
-      --mount type=bind,source=/var/www/haproxy/,target=/usr/local/etc/haproxy/,ro=true
-      --dns=127.0.0.11
-      haproxytech/haproxy-debian:2.2
-  tags:
+# .create-haproxy-service-kbt:
+#   stage: create
+#   script:
+#     - ssh -p $KBT_PROXY_SSH_PORT -t $KBT_PROXY_USER@$KBT_PROXY_ADDRESS
+#       ssh -p $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+#       docker network create -d overlay $DOCKER_NETWORK_NAME || true
+#     - ssh -p $KBT_PROXY_SSH_PORT -t $KBT_PROXY_USER@$KBT_PROXY_ADDRESS
+#       ssh -p $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+#       docker service create
+#       --mode replicated
+#       --replicas 2
+#       --name haproxy-service
+#       --network $DOCKER_NETWORK_NAME
+#       --publish published=9999,target=9999,protocol=tcp,mode=ingress
+#       --mount type=bind,source=/var/www/haproxy/,target=/usr/local/etc/haproxy/,ro=true
+#       --dns=127.0.0.11
+#       haproxytech/haproxy-debian:2.2
+#   tags:
