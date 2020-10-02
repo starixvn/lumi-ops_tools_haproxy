@@ -16,7 +16,7 @@
     - >
       for NODE in $SWARM_NODES;
       do
-        export NODE_PORT="${NODE/./_}_PORT";
+        export NODE_PORT="PORT_${NODE/./_}";
         ssh -p $KBT_PROXY_SSH_PORT -t $KBT_PROXY_USER@$KBT_PROXY_ADDRESS
         ssh -p $NODE_PORT -o StrictHostKeyChecking=no $SERVER_USER@$NODE "mkdir -p $WORKING_PATH";
         scp 
