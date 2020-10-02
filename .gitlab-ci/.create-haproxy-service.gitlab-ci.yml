@@ -14,9 +14,10 @@
     - >
       for PORT in $PUBLISHED_PORTS;
       do 
-        export CREATE_SERVICE_CMD="${CREATE_SERVICE_CMD} --publish published=PORT,target=PORT,protocol=tcp,mode=ingress"
+        export CREATE_SERVICE_CMD="${CREATE_SERVICE_CMD} --publish published=$PORT,target=$PORT,protocol=tcp,mode=ingress"
       done
     - export CREATE_SERVICE_CMD="${CREATE_SERVICE_CMD} haproxytech/haproxy-debian:2.2"
+    - echo $CREATE_SERVICE_CMD
     - $CREATE_SERVICE_CMD
   tags:
     - docker
