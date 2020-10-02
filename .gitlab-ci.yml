@@ -1,8 +1,7 @@
 variables:
   WORKING_PATH: /var/www/haproxy
-  CONFIGS_SRC_DIR_PATH: .
-  CONFIG_FILE: haproxy
-  CONFIG_FILE_EXT: cfg
+  CONFIGS_SRC_DIR_PATH: ./configs
+  CONFIG_FILE: haproxy.cfg
   PROXY_SSH_COMMAND: 'ssh -p $KBT_PROXY_SSH_PORT -t $KBT_PROXY_USER@$KBT_PROXY_ADDRESS'
 
 stages:
