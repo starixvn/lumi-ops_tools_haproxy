@@ -16,7 +16,7 @@
     - >
       for NODE in $SWARM_NODES;
       do
-        if [ "$NODE" == $KBT_PROXY_ADDRESS ]; 
+        if [ $NODE == $KBT_PROXY_ADDRESS ]; 
         then
           export NODE_PORT=$KBT_PROXY_SSH_PORT;
         else
