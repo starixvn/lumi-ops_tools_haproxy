@@ -3,7 +3,7 @@
   script:
     - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
       docker network create -d overlay $DOCKER_NETWORK_NAME || true
-    - export COMMAND="ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+    - export CREATE_SERVICE_CMD="ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
       docker service create
       --mode replicated
       --replicas 2
@@ -14,9 +14,9 @@
     - >
       for PORT in $PUBLISHED_PORTS;
       do 
-        export COMMAND+=" --publish published=PORT,target=PORT,protocol=tcp,mode=ingress"
+        export CREATE_SERVICE_CMD="${CREATE_SERVICE_CMD} --publish published=PORT,target=PORT,protocol=tcp,mode=ingress"
       done
-    - export COMMAND+=" haproxytech/haproxy-debian:2.2"
+    - export CREATE_SERVICE_CMD="${CREATE_SERVICE_CMD} haproxytech/haproxy-debian:2.2"
   tags:
     - docker
 # .create-haproxy-service-kbt:
