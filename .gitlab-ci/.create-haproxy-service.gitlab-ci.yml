@@ -5,8 +5,8 @@ variables:
 .create-haproxy-service:
   stage: create
   script:
-    - echo $SSH_COMMAND_${CI_ENVIRONMENT_NAME}
-    - $SSH_COMMAND_${CI_ENVIRONMENT_NAME} ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+    - echo ${SSH_COMMAND_${CI_ENVIRONMENT_NAME}}
+    - ${SSH_COMMAND_${CI_ENVIRONMENT_NAME}} ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
       docker network create -d overlay $DOCKER_NETWORK_NAME || true
     - export CREATE_SERVICE_CMD="ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
       docker service create
@@ -23,6 +23,6 @@ variables:
       done
     - export CREATE_SERVICE_CMD="${CREATE_SERVICE_CMD} haproxytech/haproxy-debian:2.2"
     - echo $CREATE_SERVICE_CMD
-    - $SSH_COMMAND_${CI_ENVIRONMENT_NAME} $CREATE_SERVICE_CMD
+    - ${SSH_COMMAND_${CI_ENVIRONMENT_NAME}} $CREATE_SERVICE_CMD
   tags:
     - docker
