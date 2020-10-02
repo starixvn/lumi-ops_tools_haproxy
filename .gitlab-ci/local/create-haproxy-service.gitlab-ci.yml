@@ -7,5 +7,6 @@ create-haproxy-service-local:
     SERVER_USER: root
     DOCKER_NETWORK_NAME: lumi-network
     PUBLISHED_PORTS: 9999 6969
+    PROXY_SSH_COMMAND: ''
   environment:
     name: LOCAL
