@@ -2,9 +2,9 @@
   stage: create
   script:
     - echo ${PROXY_SSH_COMMAND}
-    - ${PROXY_SSH_COMMAND} ssh -P $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+    - ${PROXY_SSH_COMMAND} ssh -p $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
       docker network create -d overlay $DOCKER_NETWORK_NAME || true
-    - export CREATE_SERVICE_CMD="ssh -P $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+    - export CREATE_SERVICE_CMD="ssh -p $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
       docker service create
       --mode replicated
       --replicas 2
