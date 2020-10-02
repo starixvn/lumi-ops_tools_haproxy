@@ -7,3 +7,5 @@ reload-config-sit:
     SERVER_USER: l1uat
     SWARM_NODES: 10.2.189.65 10.2.189.69
     PROXY_SSH_COMMAND: ''
+  environment:
+    name: SIT
