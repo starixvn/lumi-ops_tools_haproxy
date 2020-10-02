@@ -1,23 +1,13 @@
 .reload-config:
   stage: reload_config
   script:
+    - echo ${PROXY_SSH_COMMAND}
     - >
-        for NODE in $SWARM_NODES;
-        do 
-          ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
-          "docker kill --signal USR2 \$(docker container ls --filter name=haproxy-service --quiet)"
-        done
-  tags:
-    - docker
-
-.reload-config-kbt:
-  stage: reload_config
-  script:
-    - >
-        for NODE in $SWARM_NODES;
-        do 
-          ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
-          "docker kill --signal USR2 \$(docker container ls --filter name=haproxy-service --quiet)"
-        done
+      for NODE in $SWARM_NODES;
+      do
+        ${PROXY_SSH_COMMAND}
+        ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+        "docker kill --signal USR2 \$(docker container ls --filter name=haproxy-service --quiet)";
+      done
   tags:
     - docker

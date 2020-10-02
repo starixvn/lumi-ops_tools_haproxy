@@ -7,3 +7,6 @@ create-haproxy-service-sit:
     SERVER_USER: l1uat
     SERVER_PORT: 8837
     DOCKER_NETWORK_NAME: lumi-network
+    PUBLISHED_PORTS: 9999 5000
+  environment:
+    name: SIT

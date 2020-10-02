@@ -1,6 +1,3 @@
-variables:
-  PROXY_SSH_COMMAND: 'ssh -p $KBT_PROXY_SSH_PORT -t $KBT_PROXY_USER@$KBT_PROXY_ADDRESS'
-
 .create-haproxy-service:
   stage: create
   script:

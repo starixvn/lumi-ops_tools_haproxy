@@ -1,23 +1,9 @@
-reload-config-local-1:
+reload-config-sit:
   extends:
     - .reload-config
-    - .reload:local:rules
+    - .reload:sit:rules
   variables:
-    SERVER_IP: 10.10.50.14
-    SERVER_USER: root
-
-reload-config-local-2:
-  extends:
-    - .reload-config
-    - .reload:local:rules
-  variables:
-    SERVER_IP: 10.10.50.18
-    SERVER_USER: root
-
-reload-config-local-3:
-  extends:
-    - .reload-config
-    - .reload:local:rules
-  variables:
-    SERVER_IP: 10.10.50.19
-    SERVER_USER: root
+    SERVER_IP: 10.2.189.65
+    SERVER_USER: l1uat
+    SWARM_NODES: 10.2.189.65 10.2.189.69
+    PROXY_SSH_COMMAND: ''
