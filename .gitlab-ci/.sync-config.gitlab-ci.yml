@@ -16,10 +16,11 @@
     - >
       for NODE in $SWARM_NODES;
       do
+        export NODE_PORT="${NODE}_PORT";
         ssh -p $KBT_PROXY_SSH_PORT -t $KBT_PROXY_USER@$KBT_PROXY_ADDRESS
-        ssh -p $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$NODE "mkdir -p $WORKING_PATH";
+        ssh -p $NODE_PORT -o StrictHostKeyChecking=no $SERVER_USER@$NODE "mkdir -p $WORKING_PATH";
         scp 
-        -P $SERVER_PORT 
+        -P $NODE_PORT 
         -o ProxyCommand="ssh -p $KBT_PROXY_SSH_PORT -W %h:%p $KBT_PROXY_USER@$KBT_PROXY_ADDRESS" $CONFIGS_SRC_DIR_PATH/$CONFIG_FILE-${CI_ENVIRONMENT_NAME} $SERVER_USER@$NODE:$WORKING_PATH;
       done
   tags:
