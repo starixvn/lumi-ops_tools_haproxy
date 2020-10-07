@@ -11,6 +11,7 @@
       --name haproxy-service
       --network $DOCKER_NETWORK_NAME
       --mount type=bind,source=/var/www/haproxy/,target=/usr/local/etc/haproxy/,ro=true
+      --constraint node.labels.HAPROXY==yes"
       --dns=127.0.0.11"
     - >
       for PORT in $PUBLISHED_PORTS;
