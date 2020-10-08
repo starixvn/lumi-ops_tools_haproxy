@@ -2,21 +2,21 @@
   stage: create
   script:
     - echo ${PROXY_SSH_COMMAND}
-    - ${PROXY_SSH_COMMAND} ssh -p $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+    - ${PROXY_SSH_COMMAND} ssh -p $SERVER_PORT $SERVER_USER@$SERVER_IP
       docker network create -d overlay $DOCKER_NETWORK_NAME || true
-    - export CREATE_SERVICE_CMD="ssh -p $SERVER_PORT -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP
+    - export CREATE_SERVICE_CMD="ssh -p $SERVER_PORT $SERVER_USER@$SERVER_IP
       docker service create
       --mode replicated
       --replicas 2
       --name haproxy-service
       --network $DOCKER_NETWORK_NAME
       --mount type=bind,source=/var/www/haproxy/,target=/usr/local/etc/haproxy/,ro=true
-      --constraint node.labels.HAPROXY==yes"
+      --constraint node.labels.HAPROXY==yes
       --dns=127.0.0.11"
     - >
       for PORT in $PUBLISHED_PORTS;
       do 
-        export CREATE_SERVICE_CMD="${CREATE_SERVICE_CMD} --publish published=$PORT,target=$PORT,protocol=tcp,mode=ingress"
+        export CREATE_SERVICE_CMD="${CREATE_SERVICE_CMD} --publish published=$PORT,target=$PORT,protocol=tcp,mode=ingress";
       done
     - export CREATE_SERVICE_CMD="${CREATE_SERVICE_CMD} haproxytech/haproxy-debian:2.2"
     - echo $CREATE_SERVICE_CMD
