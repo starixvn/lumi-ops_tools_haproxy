@@ -1,0 +1,12 @@
+create-haproxy-service-prod:
+  extends:
+    - .create-haproxy-service
+    - .create:prod:rules
+  variables:
+    SERVER_IP: 10.2.189.61
+    SERVER_USER: v1app
+    SERVER_PORT: 22
+    DOCKER_NETWORK_NAME: lumi-network
+    PUBLISHED_PORTS: 9999
+  environment:
+    name: PROD

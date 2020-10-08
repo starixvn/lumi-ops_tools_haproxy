@@ -1,0 +1,9 @@
+reload-config-prod:
+  extends:
+    - .reload-config
+    - .reload:prod:rules
+  variables:
+    SERVER_USER: v1app
+    SWARM_NODES: 10.2.189.61 10.2.189.63
+  environment:
+    name: PROD
