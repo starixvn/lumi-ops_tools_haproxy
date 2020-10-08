@@ -19,3 +19,4 @@ include:
   - .gitlab-ci/rules.gitlab-ci.yml
   - .gitlab-ci/local/index.gitlab-ci.yml
   - .gitlab-ci/sit/index.gitlab-ci.yml
+  - .gitlab-ci/prod/index.gitlab-ci.yml
