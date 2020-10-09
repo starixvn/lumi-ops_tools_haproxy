@@ -2,7 +2,7 @@ version: '3.3'
 services:
   prometheus:
     image: prom/prometheus:latest
-    container_name: monitoring_prometheus
+    container_name: monitoring_prometheus_haproxy
     user: root
     restart: unless-stopped
     volumes:
@@ -19,9 +19,6 @@ services:
       - 9998
     ports:
       - 9998:9090
-    links:
-      - cadvisor:cadvisor
-      - node-exporter:node-exporter
     networks:
       - monitor-net
 
