@@ -3,7 +3,7 @@ reload-config-prod:
     - .reload-config
     - .reload:prod:rules
   variables:
-    SERVER_USER: v1app
-    SWARM_NODES: 10.2.189.61 10.2.189.63
+    SERVER_USER: $SC_SWARM_LEADER_PROD_SSH_USER
+    SWARM_NODES: $SC_SWARM_CLUSTER_PROD
   environment:
     name: PROD

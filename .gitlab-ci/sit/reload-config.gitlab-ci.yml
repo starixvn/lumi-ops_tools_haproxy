@@ -3,7 +3,7 @@ reload-config-sit:
     - .reload-config
     - .reload:sit:rules
   variables:
-    SERVER_USER: l1uat
-    SWARM_NODES: 10.2.189.65 10.2.189.69
+    SERVER_USER: $SC_SWARM_LEADER_SIT_SSH_USER
+    SWARM_NODES: $SC_SWARM_CLUSTER_SIT
   environment:
     name: SIT

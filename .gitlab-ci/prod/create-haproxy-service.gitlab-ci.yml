@@ -1,24 +1,11 @@
-create-haproxy-service-prod-game:
+create-haproxy-service-prod:
   extends:
     - .create-haproxy-service
     - .create:prod:rules
   variables:
-    SERVER_IP: 10.2.189.61
-    SERVER_USER: v1app
-    SERVER_PORT: 22
-    DOCKER_NETWORK_NAME: lumi-network
-    PUBLISHED_PORTS: 9999
-  environment:
-    name: PROD
-
-create-haproxy-service-prod-api:
-  extends:
-    - .create-haproxy-service
-    - .create:prod:rules
-  variables:
-    SERVER_IP: 10.2.189.62
-    SERVER_USER: v1app
-    SERVER_PORT: 22
+    SERVER_IP: $SC_SWARM_LEADER_PROD
+    SERVER_USER: $SC_SWARM_LEADER_PROD_SSH_USER
+    SERVER_PORT: $SC_SWARM_LEADER_PROD_SSH_PORT
     DOCKER_NETWORK_NAME: lumi-network
     PUBLISHED_PORTS: 9999
   environment:

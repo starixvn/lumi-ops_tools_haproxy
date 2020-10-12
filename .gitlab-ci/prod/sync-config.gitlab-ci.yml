@@ -6,6 +6,6 @@ sync-haproxy-config-prod:
     SERVER_IP: 10.2.189.61
     SERVER_PORT: 22
     SERVER_USER: v1app
-    SWARM_NODES: 10.2.189.61 10.2.189.63
+    SWARM_NODES: $SC_SWARM_CLUSTER_PROD
   environment:
     name: PROD
