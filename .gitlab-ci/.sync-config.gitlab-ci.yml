@@ -4,7 +4,7 @@
     - >
       for NODE in $SWARM_NODES;
       do 
-        ssh -o StrictHostKeyChecking=no $SERVER_USER@$NODE "mkdir -p $WORKING_PATH";
+        ssh $SERVER_USER@$NODE "mkdir -p $WORKING_PATH";
         scp $CONFIGS_SRC_DIR_PATH/$CI_ENVIRONMENT_NAME/$CONFIG_FILE $SERVER_USER@$NODE:$WORKING_PATH;
       done
   tags:
@@ -23,7 +23,7 @@
           export NODE_PORT=22;
         fi
         ssh -p $KBT_PROXY_SSH_PORT -t $KBT_PROXY_USER@$KBT_PROXY_ADDRESS ssh -p $NODE_PORT $SERVER_USER@$NODE "mkdir -p $WORKING_PATH";
-        scp  -P $NODE_PORT  -o ProxyCommand="ssh -p $KBT_PROXY_SSH_PORT -W %h:%p $KBT_PROXY_USER@$KBT_PROXY_ADDRESS" $CONFIGS_SRC_DIR_PATH/$CI_ENVIRONMENT_NAME/$CONFIG_FILE $SERVER_USER@$NODE:$WORKING_PATH;
+        scp -P $NODE_PORT -o ProxyCommand="ssh -p $KBT_PROXY_SSH_PORT -W %h:%p $KBT_PROXY_USER@$KBT_PROXY_ADDRESS" $CONFIGS_SRC_DIR_PATH/$CI_ENVIRONMENT_NAME/$CONFIG_FILE $SERVER_USER@$NODE:$WORKING_PATH;
       done
   tags:
     - docker
