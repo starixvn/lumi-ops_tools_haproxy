@@ -3,9 +3,9 @@ sync-haproxy-config-prod:
     - .sync-config-kbt
     - .any:prod:rules
   variables:
-    SERVER_IP: 10.2.189.61
-    SERVER_PORT: 22
-    SERVER_USER: v1app
+    SERVER_IP: $SC_SWARM_LEADER_PROD
+    SERVER_USER: $SC_SWARM_LEADER_PROD_SSH_USER
+    SERVER_PORT: $SC_SWARM_LEADER_PROD_SSH_PORT
     SWARM_NODES: $SC_SWARM_CLUSTER_PROD
   environment:
     name: PROD

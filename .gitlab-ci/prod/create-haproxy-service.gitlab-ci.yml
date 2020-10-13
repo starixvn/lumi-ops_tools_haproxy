@@ -7,6 +7,6 @@ create-haproxy-service-prod:
     SERVER_USER: $SC_SWARM_LEADER_PROD_SSH_USER
     SERVER_PORT: $SC_SWARM_LEADER_PROD_SSH_PORT
     DOCKER_NETWORK_NAME: lumi-network
-    PUBLISHED_PORTS: 9999
+    PUBLISHED_PORTS: 8888
   environment:
     name: PROD
