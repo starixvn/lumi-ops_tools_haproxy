@@ -8,5 +8,6 @@ create-haproxy-service-sit:
     SERVER_PORT: $SC_SWARM_LEADER_SIT_SSH_PORT
     DOCKER_NETWORK_NAME: lumi-network
     PUBLISHED_PORTS: 7777
+    REPLICA: 2
   environment:
     name: SIT

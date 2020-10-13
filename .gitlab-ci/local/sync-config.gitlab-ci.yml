@@ -3,9 +3,10 @@ sync-haproxy-config-local:
     - .sync-config
     - .any:local:rules
   variables:
-    SERVER_IP: 10.10.50.18
-    SERVER_USER: root
-    SWARM_NODES: 10.10.50.14 10.10.50.18 10.10.50.19
+    SERVER_IP: $SC_SWARM_LEADER_LOCAL
+    SERVER_USER: $SC_SWARM_LEADER_LOCAL_SSH_USER
+    SERVER_PORT: $SC_SWARM_LEADER_LOCAL_SSH_PORT
+    SWARM_NODES: $SC_SWARM_CLUSTER_LOCAL
     PROXY_SSH_COMMAND: ''
   environment:
     name: LOCAL

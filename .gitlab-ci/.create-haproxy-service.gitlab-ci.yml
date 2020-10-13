@@ -7,7 +7,7 @@
     - export CREATE_SERVICE_CMD="ssh -p $SERVER_PORT $SERVER_USER@$SERVER_IP
       docker service create
       --mode replicated
-      --replicas 2
+      --replicas $REPLICA
       --name haproxy-service
       --network $DOCKER_NETWORK_NAME
       --mount type=bind,source=/var/www/haproxy/,target=/usr/local/etc/haproxy/,ro=true

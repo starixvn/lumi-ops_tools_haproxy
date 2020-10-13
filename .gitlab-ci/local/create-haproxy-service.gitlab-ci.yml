@@ -3,11 +3,12 @@ create-haproxy-service-local:
     - .create-haproxy-service
     - .create:local:rules
   variables:
-    SERVER_IP: 10.10.50.18
-    SERVER_USER: root
-    SERVER_PORT: 22
+    SERVER_IP: $SC_SWARM_LEADER_LOCAL
+    SERVER_USER: $SC_SWARM_LEADER_LOCAL_SSH_USER
+    SERVER_PORT: $SC_SWARM_LEADER_LOCAL_SSH_PORT
     DOCKER_NETWORK_NAME: lumi-network
-    PUBLISHED_PORTS: 9999 7000
+    PUBLISHED_PORTS: 7000
     PROXY_SSH_COMMAND: ''
+    REPLICA: 2
   environment:
     name: LOCAL
