@@ -11,7 +11,13 @@
         else
           export NODE_PORT=22;
         fi
-        ${PROXY_SSH_COMMAND} ssh -p $NODE_PORT $SERVER_USER@$NODE "docker kill --signal USR2 \$(docker container ls --filter name=haproxy-service --quiet)" || true;
+        if [ "$CI_ENVIRONMENT_NAME" == "LOCAL" ];
+        then
+          ${PROXY_SSH_COMMAND} ssh -p $NODE_PORT $SERVER_USER@$NODE "docker kill --signal USR2 \$(docker container ls --filter name=haproxy-service --quiet)" || true;
+        else
+          export COMMAND="${PROXY_SSH_COMMAND} ssh -p $NODE_PORT $SERVER_USER@$NODE 'docker kill --signal USR2 \$(docker container ls --filter name=haproxy-service --quiet)' || true";
+          $COMMAND;
+        fi
         echo "Reload done for $NODE:$NODE_PORT";
       done
   tags:
